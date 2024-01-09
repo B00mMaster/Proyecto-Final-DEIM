@@ -7,10 +7,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float horizontalInput;
     Rigidbody2D rb;
+    private Animator anim;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -18,12 +22,33 @@ public class PlayerMovement : MonoBehaviour
         
         horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector3 vector3 = new Vector3(horizontalInput,0,0);
-        rb.AddForce(vector3 * speed);
+        
+        rb.velocity= new Vector2 (horizontalInput*speed,rb.velocity.y);
 
-       if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown("up"))
         {
-            GetComponent<Rigidbody2D>().velocity=new Vector3(0,7,0);
+           
+            rb.velocity=new Vector3(0,10,0);
+            anim.SetBool("jumping", true);
+            anim.SetBool("running", false);
+        }
+
+        if(horizontalInput >0) 
+        {
+            anim.SetBool("jumping", false);
+            anim.SetBool("running", true);
+            sprite.flipX = false;
+        }
+        else if (horizontalInput < 0)
+        {
+            anim.SetBool("jumping", false);
+            anim.SetBool("running", true);
+            sprite.flipX=true;
+        }
+        else  
+        {
+            anim.SetBool("jumping", false);
+            anim.SetBool("running", false);
         }
     }
 }
