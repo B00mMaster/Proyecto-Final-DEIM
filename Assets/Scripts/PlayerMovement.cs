@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private enum movement { iddle,running,jumping,falling};
 
-    public float distanceRay = 1.0f;
-    public LayerMask capaTecho;
+    public float distanceRay;
+    public LayerMask roof;
 
     private void Start()
     {
@@ -27,18 +27,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distanceRay,  capaTecho);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distanceRay,  roof);
 
         if(hit.collider!=null&&Input.GetKey(KeyCode.UpArrow))
         {
-           Debug.Log("Tocando TEcho");
+           //Debug.Log("Tocando TEcho");
             rb.gravityScale = -1f;
+            
             sprite.flipY = true;
         }
-        else if (hit.collider != null)
+        else if (hit.collider != null || hit.collider == null)
             {
-                Debug.Log("gravity again");
+                //Debug.Log("gravity again");
                 rb.gravityScale = 3f;
+            
             sprite.flipY = false;
         }
         Debug.DrawRay(transform.position,Vector2.up,Color.red, distanceRay);

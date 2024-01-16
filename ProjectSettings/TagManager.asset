@@ -8,6 +8,8 @@ TagManager:
   - roof
   - end
   - spikes
+  - wall
+  - final
   layers:
   - Default
   - TransparentFX
