@@ -10,6 +10,8 @@ TagManager:
   - spikes
   - wall
   - final
+  - player
+  - apple
   layers:
   - Default
   - TransparentFX
