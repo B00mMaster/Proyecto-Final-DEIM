@@ -7,7 +7,7 @@ public class Spike_Head : MonoBehaviour
 {
     public Transform one;
     public Transform two;
-     float velocity=3f;
+     float velocity=6f;
     Animator anim;
     public bool goTwo = true;
 
@@ -26,7 +26,7 @@ public class Spike_Head : MonoBehaviour
             if (transform.position.x == two.position.x)
             {
                 goTwo = true;
-                velocity = 5f;
+                velocity = 6f;
                 anim.SetBool("iddle",false);
                 anim.SetBool("hit", true);
 
@@ -39,7 +39,7 @@ public class Spike_Head : MonoBehaviour
 
             if (transform.position.x == one.position.x)
             {
-                velocity = 10f;
+                velocity = 12f;
                 goTwo = false;
                 anim.SetBool("hit", false);
                 anim.SetBool("iddle", true);

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     public int jumpsLeft;
     private bool isGrounded;
-    private enum movement { iddle,running,jumping,falling};
+    private enum Movement { iddle,running,jumping,falling};
 
     public float distanceRay;
     public LayerMask roof;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpsLeft = 2;
         }
-        movement state;
+        Movement state;
         
         horizontalInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
@@ -64,26 +64,26 @@ public class PlayerMovement : MonoBehaviour
 
         if(horizontalInput >0f) 
         {
-            state = movement.running;
+            state = Movement.running;
             sprite.flipX = false;
         }
         else if (horizontalInput < 0f)
         {
-            state = movement.running;
+            state = Movement.running;
             sprite.flipX=true;
         }
         else  
         {
-            state = movement.iddle;
+            state = Movement.iddle;
         }
 
         if(rb.velocity.y>.1f)
         {
-            state = movement.jumping;
+            state = Movement.jumping;
         }
         else if (rb.velocity.y < -.1f)
         {
-            state = movement.falling;
+            state = Movement.falling;
         }
 
         anim.SetInteger("state",(int)state);
