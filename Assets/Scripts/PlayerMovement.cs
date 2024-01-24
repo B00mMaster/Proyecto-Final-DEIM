@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
     public int jumpsLeft;
-    private bool isGrounded;
+    public bool isGrounded;
     private enum Movement { iddle,running,jumping,falling};
 
     public float distanceRay;
