@@ -897,6 +897,7 @@ MonoBehaviour:
   speed: 14
   horizontalInput: 0
   jumpsLeft: 0
+  isGrounded: 0
   distanceRay: 2
   roof:
     serializedVersion: 2
@@ -5507,7 +5508,7 @@ Transform:
   m_GameObject: {fileID: 940572257}
   serializedVersion: 2
   m_LocalRotation: {x: -0.018189494, y: -0.000000034407073, z: -6.2595074e-10, w: 0.9998346}
-  m_LocalPosition: {x: 0, y: 0, z: -14.69}
+  m_LocalPosition: {x: 0, y: 0, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

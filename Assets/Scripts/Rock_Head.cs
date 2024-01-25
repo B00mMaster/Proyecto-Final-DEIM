@@ -8,7 +8,7 @@ public class Rock_Head : MonoBehaviour
     public Transform two;
     public Transform three;
     public Transform four;
-    public float velocity = 12f;
+    public float velocity = 10f;
    
     public bool goTwo = true;
     public bool goFour = true;
