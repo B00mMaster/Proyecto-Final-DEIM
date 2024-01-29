@@ -10,59 +10,79 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sprite;
-    public int jumpsLeft;
-    public bool isGrounded;
+    public float jumpsLeft=2;
+    public bool isGround;
+    
     private enum Movement { iddle,running,jumping,falling};
 
     public float distanceRay;
+    public float distanceRay2;
+    public LayerMask ground;
     public LayerMask roof;
-
+    
     private void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        jumpsLeft = 2;
+        
     }
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distanceRay,  roof);
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, distanceRay,  roof);
+        
+       // RaycastHit2D isGrounded = Physics2D.Raycast(transform.position, Vector2.down,distanceRay2, ground);
+        RaycastHit2D isGroundedR = Physics2D.Raycast(transform.position, Vector2.right, distanceRay2, ground);
+        RaycastHit2D isGroundedL = Physics2D.Raycast(transform.position, Vector2.left, distanceRay2, ground);
 
-        if(hit.collider!=null&&Input.GetKey(KeyCode.UpArrow))
+        if (hitUp.collider!=null&&Input.GetKey(KeyCode.UpArrow))
         {
            //Debug.Log("Tocando TEcho");
             rb.gravityScale = -1f;
             
             sprite.flipY = true;
         }
-        else if (hit.collider != null || hit.collider == null)
+        else if (hitUp.collider != null || hitUp.collider == null)
             {
                 //Debug.Log("gravity again");
                 rb.gravityScale = 3f;
             
             sprite.flipY = false;
         }
-        Debug.DrawRay(transform.position,Vector2.up,Color.red, distanceRay);
 
-        if (jumpsLeft == 0 && isGrounded == true)
-        {
-            jumpsLeft = 2;
-        }
+        
         Movement state;
         
         horizontalInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
 
+        //Debug.Log(isGrounded!);
 
-
-        if (Input.GetKeyDown("up")&&(isGrounded&&jumpsLeft>0))
+       
+        if (isGroundedL.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("JUMPING");
+            Jump();
+        }
+        if (isGroundedR.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("JUMPING");
+            Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (isGround && jumpsLeft > 0))
         {
             Jump();
         }
+        if (jumpsLeft == 0 && isGround == true)
+        {
+            jumpsLeft = 2;
+        }
+
+        //Debug.DrawRay(transform.position, Vector2.down, Color.blue, distanceRay2);
 
 
-        if(horizontalInput >0f) 
+        if (horizontalInput >0f) 
         {
             state = Movement.running;
             sprite.flipX = false;
@@ -94,33 +114,47 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpsLeft--;
 
-        if (!isGrounded)
+        if (!isGround)
         {
             jumpsLeft = 2;
         }
-        if(jumpsLeft==0)
-        { 
-            isGrounded = false;
-        
+        if (jumpsLeft == 0)
+        {
+            isGround= false;
+
         }
-        
+
+
     }
-   
+
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("ground"))
         {
-            isGrounded = true;
+            isGround = true;
             jumpsLeft = 2;
 
 
         }
-        
-
-
 
     }
 
-    
+
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector2.up*distanceRay);
+        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, Vector2.down*distanceRay2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, Vector2.left * distanceRay2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, Vector2.right * distanceRay2);
+    }
 
 }
