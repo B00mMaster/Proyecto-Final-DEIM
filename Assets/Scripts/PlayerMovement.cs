@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("gravity again");
                 rb.gravityScale = 3f;
             
+            
             sprite.flipY = false;
         }
 
@@ -60,17 +61,21 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(isGrounded!);
 
        
-        if (isGroundedL.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isGroundedL.collider != null && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Salto"))
         {
             Debug.Log("JUMPING");
             Jump();
+            jumpsLeft = 2;
+            isGround = true;
         }
-        if (isGroundedR.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isGroundedR.collider != null && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Salto"))
         {
             Debug.Log("JUMPING");
             Jump();
+            jumpsLeft = 2;
+            isGround = true;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && (isGround && jumpsLeft > 0))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (isGround && jumpsLeft > 0) || Input.GetButtonDown("Salto"))
         {
             Jump();
         }

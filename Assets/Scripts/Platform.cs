@@ -20,7 +20,7 @@ public class Platform : MonoBehaviour
         if (!goTwo)
         {
             transform.position = Vector2.MoveTowards(transform.position, two.position, velocity * Time.deltaTime);
-            if (transform.position.y == two.position.y)
+            if (transform.position.y == two.position.y&& transform.position.x == two.position.x)
             {
                 goTwo = true;
             }
@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, one.position, velocity * Time.deltaTime);
 
-            if (transform.position.y == one.position.y)
+            if (transform.position.y == one.position.y && transform.position.x == one.position.x)
             {
 
                 goTwo = false;

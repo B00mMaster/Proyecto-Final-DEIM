@@ -7,7 +7,7 @@ public class Spike_Head : MonoBehaviour
 {
     public Transform one;
     public Transform two;
-     float velocity=6f;
+      public float velocity=6f;
     Animator anim;
     public bool goTwo = true;
 
