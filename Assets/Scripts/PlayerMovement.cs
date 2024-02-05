@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         {
            //Debug.Log("Tocando TEcho");
             rb.gravityScale = -1f;
-            
+            jumpsLeft = 2;
+            isGround = true;
             sprite.flipY = true;
         }
         else if (hitUp.collider != null || hitUp.collider == null)

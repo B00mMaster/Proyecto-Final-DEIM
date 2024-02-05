@@ -46,6 +46,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 139048849
+    locked: 0
+  - name: Zierra
+    uniqueID: 1052300115
+    locked: 0
+  - name: terain
+    uniqueID: 1313698279
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
