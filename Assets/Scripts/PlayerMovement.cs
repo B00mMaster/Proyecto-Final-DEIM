@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D isGroundedR = Physics2D.Raycast(transform.position, Vector2.right, distanceRay2, ground);
         RaycastHit2D isGroundedL = Physics2D.Raycast(transform.position, Vector2.left, distanceRay2, ground);
 
-        if (hitUp.collider!=null&&Input.GetKey(KeyCode.UpArrow))
+        if (hitUp.collider!=null&&Input.GetKey(KeyCode.UpArrow) || Input.GetButton("Salto"))
         {
            //Debug.Log("Tocando TEcho");
             rb.gravityScale = -1f;
@@ -53,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
             sprite.flipY = false;
         }
 
-        
-        Movement state;
+
+        int state = 0;
         
         horizontalInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
@@ -90,26 +90,31 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontalInput >0f) 
         {
-            state = Movement.running;
+            state = 1;
+            anim.SetInteger("state", state);
             sprite.flipX = false;
         }
         else if (horizontalInput < 0f)
         {
-            state = Movement.running;
+            state = 1;
+            anim.SetInteger("state", state);
             sprite.flipX=true;
         }
         else  
         {
-            state = Movement.iddle;
+            state = 0;
+            anim.SetInteger("state", state);
         }
 
         if(rb.velocity.y>.1f)
         {
-            state = Movement.jumping;
+            state = 2;
+            anim.SetInteger("state", state);
         }
         else if (rb.velocity.y < -.1f)
         {
-            state = Movement.falling;
+            state = 3;
+            anim.SetInteger("state", state);
         }
 
         anim.SetInteger("state",(int)state);
