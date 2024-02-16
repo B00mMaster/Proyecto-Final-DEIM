@@ -18,7 +18,11 @@ public class Apple_colision : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        counter.text = "Apples:0/6";
+        if(counter!=null)
+        {
+            counter.text = "Apples:0/6";
+        }
+            
         anim = GetComponent<Animator>();
 
         particle.Stop();

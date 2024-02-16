@@ -11,12 +11,15 @@ public class Player_Life : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
 
+    private bool isDead;
+
     private void Start()
     {
+        isDead = false;
         deathCount = PlayerPrefs.GetInt("DeathCount", 0);
         UpdateDeaths();
         anim= GetComponent<Animator>();
-        rb= GetComponent<Rigidbody>();
+        
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,6 +28,9 @@ public class Player_Life : MonoBehaviour
             deathCount++;
 
             anim.SetTrigger("death");
+
+            isDead = true;
+            
            
 
             PlayerPrefs.SetInt("DeathCount",deathCount);
@@ -34,12 +40,12 @@ public class Player_Life : MonoBehaviour
     }
 
    void UpdateDeaths()
-    {
+   {
         if(deathCounter!=null)
         {
             deathCounter.text = "Deaths:" + deathCount.ToString();
         }
-    }
+   }
 
     void Restart()
     {
@@ -50,5 +56,10 @@ public class Player_Life : MonoBehaviour
     {
         deathCount = 0;
         PlayerPrefs.SetInt("DeathCount", deathCount);
+    }
+
+    public bool IsDead()
+    { 
+        return isDead; 
     }
 }
