@@ -35,10 +35,16 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+
         
     }
+
     void Update()
     {
+
+        int state = 0;
+
+        
         if (playerLife.IsDead())
         {
             
@@ -49,50 +55,41 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, distanceRay, ground);
 
         // RaycastHit2D isGrounded = Physics2D.Raycast(transform.position, Vector2.down,distanceRay2, ground);
-        //RaycastHit2D isGroundedR = Physics2D.Raycast(transform.position, Vector2.right, distanceRay2, ground);
-        //RaycastHit2D isGroundedL = Physics2D.Raycast(transform.position, Vector2.left, distanceRay2, ground);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, distanceRay2, ground);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, distanceRay2, ground);
 
         if (hitUp.collider != null && Input.GetKey(KeyCode.UpArrow))
         {
+
+            state = 0;
+            
             //Debug.Log("Tocando TEcho");
             rb.gravityScale = -1f;
+            
 
-            state = 4;
+           
+            
             sprite.flipY = true;
         }
+        
         else if (hitUp.collider != null || hitUp.collider == null)
         {
             //Debug.Log("gravity again");
             rb.gravityScale = 3f;
-            
 
+            
 
             sprite.flipY = false;
         }
 
+        
 
-        int state = 0;
+       
 
         horizontalInput = Input.GetAxis("Horizontal");
 
 
-        // //Debug.Log(isGrounded!);
-
-
-        //if (isGroundedL.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    Debug.Log("JUMPING");
-        //    //**Jump();
-        //    //**jumpsLeft = 2;
-        //    //**isGround = true;
-        //}
-        //if (isGroundedR.collider != null && Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    Debug.Log("JUMPING");
-        //    //**Jump();
-        //    //**jumpsLeft = 2;
-        //    //**isGround = true;
-        //}
+        
         if (Input.GetKeyDown(KeyCode.UpArrow) && (isGround || jumpsLeft > 0))
         {
             Jump();
@@ -115,12 +112,7 @@ public class PlayerMovement : MonoBehaviour
              
             sprite.flipX = true;
         }
-        else
-        {
-            state = 0;
-
-        }
-
+        
         if (rb.velocity.y > .1f)
         {
             state = 2;
@@ -131,6 +123,10 @@ public class PlayerMovement : MonoBehaviour
             state = 3;
 
         }
+
+        
+       
+         
         //mamahuebo
         anim.SetInteger("state", state);
     }

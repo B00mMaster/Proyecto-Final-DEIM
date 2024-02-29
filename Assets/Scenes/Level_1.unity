@@ -847,7 +847,7 @@ Transform:
   m_GameObject: {fileID: 200718599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.94, y: 0.03, z: 0}
+  m_LocalPosition: {x: -2.94, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -899,13 +899,13 @@ MonoBehaviour:
   jumpsLeft: 2
   isGround: 0
   distanceRay: 0.67
-  distanceRay2: 1.36
+  distanceRay2: 0.45
   ground:
     serializedVersion: 2
     m_Bits: 8
   roof:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
 --- !u!95 &200718605
 Animator:
   serializedVersion: 5
@@ -973,18 +973,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0120100975, y: -0.28023475}
+  m_Offset: {x: 0.0120100975, y: -0.07715142}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 2, y: 1.625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8870673, y: 1.4395305}
+  m_Size: {x: 0.8870673, y: 1.4395306}
   m_EdgeRadius: 0
 --- !u!114 &200718608
 MonoBehaviour:

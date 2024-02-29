@@ -12,6 +12,7 @@ TagManager:
   - final
   - player
   - apple
+  - trophy
   layers:
   - Default
   - TransparentFX
