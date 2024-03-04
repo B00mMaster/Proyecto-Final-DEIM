@@ -15,4 +15,9 @@ public class NextScene : MonoBehaviour
         SceneManager.LoadScene(nextScene);
         
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

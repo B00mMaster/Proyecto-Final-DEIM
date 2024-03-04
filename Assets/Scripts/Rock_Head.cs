@@ -13,10 +13,6 @@ public class Rock_Head : MonoBehaviour
     public bool goTwo = true;
     public bool goFour = true;
 
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
 

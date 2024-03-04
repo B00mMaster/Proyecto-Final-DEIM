@@ -14,8 +14,7 @@ public class Apple_colision : MonoBehaviour
     public ParticleSystem particle;
     public int applesTaken;
     public TextMeshProUGUI counter;
-    
-   
+    public SoundManager soundManager;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,18 +24,16 @@ public class Apple_colision : MonoBehaviour
         {
             counter.text = "Apples:0/6";
         }
-            
-        
-
-        particle.Stop();
+            particle.Stop();
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("apple"))
         {
+           
             Destroy(collision.gameObject);
-
+            soundManager.SFX(soundManager.apple);
             applesTaken++;
 
             counter.text="Apples:"+applesTaken+"/6";
@@ -53,7 +50,7 @@ public class Apple_colision : MonoBehaviour
                
             
         }
-        if(applesTaken< 5 && collision.gameObject.CompareTag("Finish"))
+        if(applesTaken<6 && collision.gameObject.CompareTag("Finish"))
         {
             counter.text = "You must collect all apples!";
         }
@@ -61,9 +58,10 @@ public class Apple_colision : MonoBehaviour
        
     }
 
-    void ToNextScene()
+    public void ToNextScene()
     {
         SceneManager.LoadScene(NextScene);
     }
+       
 
 }

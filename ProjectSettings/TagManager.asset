@@ -13,6 +13,7 @@ TagManager:
   - player
   - apple
   - trophy
+  - platform
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Water
   - UI
   - Top
-  - 
+  - PostPro
   - 
   - 
   - 
@@ -50,7 +51,7 @@ TagManager:
   - name: background
     uniqueID: 139048849
     locked: 0
-  - name: Zierra
+  - name: spikes
     uniqueID: 1052300115
     locked: 0
   - name: terain

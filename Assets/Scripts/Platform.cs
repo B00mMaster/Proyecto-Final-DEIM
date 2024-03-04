@@ -6,21 +6,16 @@ public class Platform : MonoBehaviour
 {
     public Transform one;
     public Transform two;
-   public float velocity = 3f;
-    Animator anim;
+    public float velocity = 3f;
     public bool goTwo = true;
 
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-        
-    }
     private void Update()
     {
         if (!goTwo)
         {
+            //the platform will move point to point constantly
             transform.position = Vector2.MoveTowards(transform.position, two.position, velocity * Time.deltaTime);
-            if (transform.position.y == two.position.y&& transform.position.x == two.position.x)
+            if (transform.position.y == two.position.y && transform.position.x == two.position.x)
             {
                 goTwo = true;
             }
@@ -42,6 +37,7 @@ public class Platform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
+            //Parent the player to the platform when they collide
             collision.gameObject.transform.SetParent(transform);
         }
     }
@@ -53,4 +49,6 @@ public class Platform : MonoBehaviour
             collision.gameObject.transform.SetParent(null);
         }
     }
+
+
 }

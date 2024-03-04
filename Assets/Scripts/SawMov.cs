@@ -1,35 +1,25 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike_Head : MonoBehaviour
+public class SawMov : MonoBehaviour
 {
     public Transform one;
     public Transform two;
-      public float velocity=6f;
-    Animator anim;
+    public float velocity = 3f;
+    
     public bool goTwo = true;
 
-    private void Start()
-    {
-        anim=GetComponent<Animator>();
-        
-    }
+   
+    
     private void Update()
     {
-
-
         if (!goTwo)
         {
             transform.position = Vector2.MoveTowards(transform.position, two.position, velocity * Time.deltaTime);
-            if (transform.position.x == two.position.x)
+            if (transform.position.y == two.position.y && transform.position.x == two.position.x)
             {
                 goTwo = true;
-                velocity = 6f;
-                
-                anim.SetBool("hit", true);
-
             }
 
         }
@@ -37,17 +27,11 @@ public class Spike_Head : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, one.position, velocity * Time.deltaTime);
 
-            if (transform.position.x == one.position.x)
+            if (transform.position.y == one.position.y && transform.position.x == one.position.x)
             {
-                velocity = 12f;
+
                 goTwo = false;
-                anim.SetBool("hit", false);
-                
             }
         }
-        
-           
-        
     }
-    
 }
